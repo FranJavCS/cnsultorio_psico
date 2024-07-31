@@ -1,28 +1,28 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Psico",
+  description: "Psicologo Online",
   navItems: [
     {
-      label: "Home",
+      label: "Inicio",
       href: "/",
     },
     {
-      label: "Docs",
-      href: "/docs",
+      label: "Quienes Somos",
+      href: "/acerca-de",
     },
     {
-      label: "Pricing",
-      href: "/pricing",
+      label: "Catalogo Psicologos",
+      href: "/catalogo",
     },
     {
-      label: "Blog",
-      href: "/blog",
+      label: "Articulos",
+      href: "/articulos",
     },
     {
-      label: "About",
-      href: "/about",
+      label: "Contactanos",
+      href: "/contactanos",
     },
   ],
   navMenuItems: [
