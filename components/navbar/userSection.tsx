@@ -1,12 +1,4 @@
-import {
-  Navbar as NextUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@nextui-org/navbar";
+import { NavbarContent } from "@nextui-org/navbar";
 import {
   Button,
   Dropdown,
@@ -15,50 +7,27 @@ import {
   DropdownTrigger,
   DropdownMenu,
 } from "@nextui-org/react";
-import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
-import { Input } from "@nextui-org/input";
-import { link as linkStyles } from "@nextui-org/theme";
-import NextLink from "next/link";
-import clsx from "clsx";
-
-import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  HeartFilledIcon,
-  SearchIcon,
-  Logo,
-} from "@/components/icons";
+import { useRouter } from "next/navigation";
+import { useSignOut, useAuthState } from "react-firebase-hooks/auth";
 
 import { auth } from "@/lib/firebaseConfig";
-import { useRouter } from "next/navigation";
-import {
-  useSignInWithEmailAndPassword,
-  useSignOut,
-  useAuthState,
-} from "react-firebase-hooks/auth";
 
 export const UserSection = () => {
   const [user] = useAuthState(auth);
-  const [signOut, loadingSingOut, errorSingOut] = useSignOut(auth);
+  const [signOut] = useSignOut(auth);
 
   const router = useRouter();
 
   const handleLogout = async () => {
-    try {
-      await signOut();
-      router.push("/");
-    } catch (error: any) {
-      console.log(error);
-    }
+    await signOut();
+    router.push("/");
   };
 
   return (
-    <NavbarItem>
+    <NavbarContent as="div" justify="end">
       {user ? (
-        <Dropdown placement="bottom-start">
+        <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <User
               as="button"
@@ -68,11 +37,11 @@ export const UserSection = () => {
               }}
               className="transition-transform"
               description={user.email}
-              name="Tony Reichert"
+              name={user.displayName}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="User Actions" variant="flat">
-            <DropdownItem onClick={handleLogout} key="log-out">
+            <DropdownItem key="log-out" color="danger" onClick={handleLogout}>
               Cerrar Sesion
             </DropdownItem>
           </DropdownMenu>
@@ -82,6 +51,6 @@ export const UserSection = () => {
           Iniciar sesion
         </Button>
       )}
-    </NavbarItem>
+    </NavbarContent>
   );
 };
