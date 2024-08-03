@@ -1,4 +1,11 @@
-import { Card, Button, CardBody, Input, Spinner } from "@nextui-org/react";
+import {
+  Card,
+  Button,
+  CardBody,
+  Input,
+  Spinner,
+  Link,
+} from "@nextui-org/react";
 import { useState } from "react";
 import {
   useSignInWithEmailAndPassword,
@@ -56,7 +63,11 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
               />
 
-              {error && <p className="text-red-500 mb-4">{error.message}</p>}
+              {error && <p className="text-red-500 mb-5">{error.message}</p>}
+
+              <div className="mb-4 2-full text-center">
+                <Link href="/registrarme">Registrarme</Link>
+              </div>
 
               <Button
                 fullWidth

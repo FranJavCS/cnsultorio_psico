@@ -13,7 +13,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
-/* import { ThemeSwitch } from "@/components/theme-switch"; */
+import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
 import { UserSection } from "@/components/navbar/userSection";
 
@@ -30,6 +30,7 @@ export const Navbar = () => {
         </NavbarBrand>
       </NavbarContent>
 
+      <ThemeSwitch />
       <NavbarContent className="hidden sm:flex gap-4" justify="start">
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
