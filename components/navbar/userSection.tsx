@@ -32,12 +32,15 @@ export const UserSection = () => {
             <User
               as="button"
               avatarProps={{
+                showFallback: true,
+                name: user.displayName || "Usuario",
                 isBordered: true,
-                src: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+                src:
+                  user.photoURL ||
+                  "https://i.pravatar.cc/150?u=a042581f4e29026024d",
               }}
               className="transition-transform"
               description={user.email}
-              name={user.displayName}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="User Actions" variant="flat">
@@ -47,7 +50,7 @@ export const UserSection = () => {
           </DropdownMenu>
         </Dropdown>
       ) : (
-        <Button as={Link} color="primary" href="/login" variant="flat">
+        <Button as={Link} color="primary" href="/login" variant="shadow">
           Iniciar sesion
         </Button>
       )}

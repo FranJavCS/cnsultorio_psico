@@ -9,20 +9,20 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Quienes Somos",
-      href: "/acerca-de",
-    },
-    {
       label: "Catalogo Psicologos",
       href: "/catalogo",
     },
     {
       label: "Articulos",
-      href: "/articulos",
+      href: "/blog",
     },
     {
       label: "Contactanos",
       href: "/contactanos",
+    },
+    {
+      label: "Quienes Somos",
+      href: "/acerca-de",
     },
   ],
   navMenuItems: [

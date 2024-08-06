@@ -17,7 +17,11 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
 import { UserSection } from "@/components/navbar/userSection";
 
+import { useRouter } from "next/router";
+
 export const Navbar = () => {
+  const router = useRouter();
+
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent>
@@ -30,10 +34,9 @@ export const Navbar = () => {
         </NavbarBrand>
       </NavbarContent>
 
-      <ThemeSwitch />
       <NavbarContent className="hidden sm:flex gap-4" justify="start">
         {siteConfig.navItems.map((item) => (
-          <NavbarItem key={item.href}>
+          <NavbarItem key={item.href} isActive={router.pathname == item.href}>
             <NextLink
               className={clsx(
                 linkStyles({ color: "foreground" }),
