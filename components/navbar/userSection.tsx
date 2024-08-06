@@ -41,6 +41,7 @@ export const UserSection = () => {
               }}
               className="transition-transform"
               description={user.email}
+              name={user.displayName || "Usuario"}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="User Actions" variant="flat">
