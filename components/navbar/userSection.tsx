@@ -50,7 +50,7 @@ export const UserSection = () => {
           </DropdownMenu>
         </Dropdown>
       ) : (
-        <Button as={Link} color="primary" href="/login" variant="shadow">
+        <Button as={Link} color="primary" href="/auth/login" variant="shadow">
           Iniciar sesion
         </Button>
       )}
