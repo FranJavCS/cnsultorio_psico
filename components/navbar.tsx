@@ -9,9 +9,7 @@ import {
   NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
-import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
-import clsx from "clsx";
 import { usePathname } from "next/navigation";
 
 import { siteConfig } from "@/config/site";
@@ -38,16 +36,13 @@ export const Navbar = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="start">
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href} isActive={pathname == item.href}>
-            <NextLink
-              className={clsx(
-                linkStyles({ color: "foreground" }),
-                "data-[active=true]:text-primary data-[active=true]:font-medium",
-              )}
-              color="foreground"
+            <Link
+              className="data-[active=true]:text-primary "
+              color={pathname == item.href ? "secondary" : "foreground"}
               href={item.href}
             >
               {item.label}
-            </NextLink>
+            </Link>
           </NavbarItem>
         ))}
       </NavbarContent>

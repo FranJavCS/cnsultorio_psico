@@ -41,12 +41,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center ">
+    <section className="flex items-center justify-center ">
       {!isLoading && !user ? (
         <Card>
           <CardBody className="p-8 w-96 max-w-md">
             <div>
-              <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
+              <h1 className="text-2xl font-bold mb-6 text-center text-primary">
+                Login
+              </h1>
               <Input
                 fullWidth
                 className="p-2 mb-4 "
@@ -85,6 +87,6 @@ export default function LoginPage() {
       ) : (
         <Spinner />
       )}
-    </div>
+    </section>
   );
 }

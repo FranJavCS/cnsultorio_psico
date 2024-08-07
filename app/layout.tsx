@@ -1,5 +1,5 @@
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -19,13 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -37,8 +30,6 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen font-sans antialiased",
-          /*           "bg-gradient-to-r from-red-100 via-red-150 to-red-200 ",
-          "dark:from-red-950 dark:via-neutral-900 dark:to-neutral-950 dark:to-10%", */
           fontSans.variable,
           fontMono.variable,
         )}
@@ -46,7 +37,7 @@ export default function RootLayout({
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />
-            <main className="container mx-auto max-w-9xl pt-16 px-6 flex-grow">
+            <main className="container mx-auto max-w-9xl pt-5 px-6 flex-grow">
               {children}
             </main>
             <footer className="w-full flex items-center justify-center py-3">

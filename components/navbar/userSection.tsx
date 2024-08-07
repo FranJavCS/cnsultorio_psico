@@ -51,9 +51,20 @@ export const UserSection = () => {
           </DropdownMenu>
         </Dropdown>
       ) : (
-        <Button as={Link} color="primary" href="/auth/login" variant="shadow">
-          Iniciar sesion
-        </Button>
+        <div className="flex gap-3">
+          <Button as={Link} color="primary" href="/auth/login" variant="light">
+            Login
+          </Button>
+
+          <Button
+            as={Link}
+            color="primary"
+            href="/auth/registrarme"
+            variant="solid"
+          >
+            Registrarme
+          </Button>
+        </div>
       )}
     </NavbarContent>
   );

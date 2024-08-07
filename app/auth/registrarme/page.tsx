@@ -8,17 +8,57 @@ import {
 } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
 export default function SignUpPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const formItems = [
+    {
+      name: "fullName",
+      label: "Nombre Completo",
+      defaultValue: "",
+      isRequired: "Este campo es requerido",
+      type: "text",
+    },
+    {
+      name: "username",
+      label: "Username",
+      defaultValue: "",
+      isRequired: false,
+      type: "text",
+    },
+    {
+      name: "email",
+      label: "Correo",
+      defaultValue: "",
+      isRequired: "Este campo es requerido",
+      type: "email",
+    },
+    {
+      name: "password",
+      label: "Contraseña",
+      defaultValue: "",
+      isRequired: "Este campo es requerido",
+      type: "password",
+    },
+    {
+      name: "avatar",
+      label: "Avatar",
+      defaultValue: "",
+      isRequired: false,
+      type: "text",
+    },
+  ];
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const auth = getAuth();
-  const [user, isLoading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const router = useRouter();
 
@@ -26,26 +66,26 @@ export default function SignUpPage() {
     router.push("/");
   }
 
-  const [createUserWithEmailAndPassword, , isLoadingRegister, registerError] =
+  const [createUserWithEmailAndPassword, , isLoadingRegister] =
     useCreateUserWithEmailAndPassword(auth);
 
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [updateProfile, updating] = useUpdateProfile(auth);
 
-  const handleRegister = async () => {
+  const handleRegister = async (data: any) => {
     try {
-      const user = await createUserWithEmailAndPassword(email, password);
+      const user = await createUserWithEmailAndPassword(
+        data.email,
+        data.password,
+      );
 
       if (!user) {
         return;
       }
 
       const result = await updateProfile({
-        displayName: username,
-        photoURL: avatar,
+        displayName: data.username,
+        photoURL: data.avatar,
       });
-
-      setEmail("");
-      setPassword("");
 
       if (!isLoadingRegister && !updating && result) {
         router.push("/");
@@ -57,53 +97,28 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen ">
+    <div className="flex items-center justify-center ">
       <Card className="border border-indigo-400">
         <CardBody className="p-8 w-96 max-w-md">
-          <div>
+          <form onSubmit={handleSubmit(handleRegister)}>
             <h1 className="text-2xl font-bold mb-6 text-center text-primary">
               Registrarme
             </h1>
-            <Input
-              fullWidth
-              className="p-2 mb-4 "
-              color="secondary"
-              label="Username"
-              type="text"
-              value={username}
-              variant="bordered"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              fullWidth
-              className="p-2 mb-4 "
-              color="secondary"
-              label="Avatar"
-              type="url"
-              value={avatar}
-              variant="bordered"
-              onChange={(e) => setAvatar(e.target.value)}
-            />
-            <Input
-              fullWidth
-              className="p-2 mb-4 "
-              color="secondary"
-              label="Email"
-              type="email"
-              value={email}
-              variant="bordered"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              fullWidth
-              className="p-2 mb-4"
-              color="secondary"
-              label="Password"
-              type="password"
-              value={password}
-              variant="bordered"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            {formItems.map((item) => (
+              <Input
+                key={item.name}
+                fullWidth
+                className="p-2 mb-4 "
+                errorMessage={errors[item.name]?.message?.toString()}
+                isInvalid={errors[item.name] ? true : false}
+                isRequired={item.isRequired ? true : false}
+                label={item.label}
+                type={item.type}
+                {...register(item.name, { required: item.isRequired })}
+                color={errors[item.name] ? "danger" : "secondary"}
+                variant="bordered"
+              />
+            ))}
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
@@ -112,11 +127,11 @@ export default function SignUpPage() {
               color="primary"
               isLoading={loading}
               size="lg"
-              onClick={() => handleRegister()}
+              type="submit"
             >
               Registrarme
             </Button>
-          </div>
+          </form>
         </CardBody>
       </Card>
     </div>
