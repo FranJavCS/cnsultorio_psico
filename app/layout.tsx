@@ -40,7 +40,7 @@ export default function RootLayout({
           /*           "bg-gradient-to-r from-red-100 via-red-150 to-red-200 ",
           "dark:from-red-950 dark:via-neutral-900 dark:to-neutral-950 dark:to-10%", */
           fontSans.variable,
-          fontMono.variable
+          fontMono.variable,
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

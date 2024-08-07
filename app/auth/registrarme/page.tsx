@@ -1,4 +1,4 @@
-// components/Login.js
+"use client";
 import { Card, Button, CardBody, Input } from "@nextui-org/react";
 import { useState } from "react";
 import {
@@ -7,7 +7,6 @@ import {
   useAuthState,
 } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
-
 import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
