@@ -41,7 +41,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen ">
+    <div className="flex items-center justify-center ">
       {!isLoading && !user ? (
         <Card>
           <CardBody className="p-8 w-96 max-w-md">
