@@ -24,7 +24,7 @@ module.exports = {
       layout: {}, // common layout tokens (applied to all themes)
       themes: {
         light: lightTheme,
-        dark: darkTheme,
+        dark: lightTheme,
         // ... custom themes
       },
     }),
