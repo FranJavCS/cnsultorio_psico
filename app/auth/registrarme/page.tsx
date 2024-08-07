@@ -96,11 +96,33 @@ export default function SignUpPage() {
     }
   };
 
+  const handleRegisterApi = async (data: any) => {
+    try {
+      setLoading(true);
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        router.push("/");
+
+        return;
+      }
+    } catch (error: any) {
+      setLoading(false);
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center ">
       <Card className="border border-indigo-400">
         <CardBody className="p-8 w-96 max-w-md">
-          <form onSubmit={handleSubmit(handleRegister)}>
+          <form onSubmit={handleSubmit(handleRegisterApi)}>
             <h1 className="text-2xl font-bold mb-6 text-center text-primary">
               Registrarme
             </h1>
