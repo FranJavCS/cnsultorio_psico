@@ -1,3 +1,5 @@
+import { Locations } from "@/types/locations";
+
 interface Specialist {
   _uid: string;
   avatar: string;
@@ -5,9 +7,13 @@ interface Specialist {
   email: string;
   firstName: string;
   lastName: string;
-  sex: string;
+  gender: string;
   username: string;
   phone_number: string;
+  price: number;
+  locations: Locations[];
+  bussiDates: Date[];
+  description: string;
 }
 
 export type { Specialist };

@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 
-import { User } from "@/lib/types/user";
+import { User } from "@/types/user";
 
 function createRandomUser(): User {
   const sex = faker.person.sexType();
