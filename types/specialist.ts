@@ -1,4 +1,4 @@
-import { Locations } from "@/types/locations";
+import { Location } from "@/types/locations";
 
 interface Specialist {
   _uid: string;
@@ -11,7 +11,7 @@ interface Specialist {
   username: string;
   phone_number: string;
   price: number;
-  locations: Locations[];
+  locations: Location[];
   bussiDates: Date[];
   description: string;
 }

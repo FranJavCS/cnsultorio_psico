@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 
   const specialist = listSpecialist(10);
 
-  /*   await delay(1000); */
+  await delay(1000);
 
   return NextResponse.json({ data: specialist });
 }

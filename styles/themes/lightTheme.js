@@ -3,9 +3,10 @@ module.exports = {
   colors: {
     fondo: "#f3f4f6",
     text: "#111827",
-    primary: "#adb0ed",
-    secondary: "#8f92d9",
-    detail: "#c3c5f1",
-    complement: "#edb0ad",
+    primary: "#3D46F2",
+    secondary: "#636AF2",
+    detail: "#8D92F2",
+    complement: "#F2AE30",
+    fondoAcent: "#D5D7F2",
   }, // light theme colors
 };

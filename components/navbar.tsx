@@ -19,8 +19,6 @@ import { UserSection } from "@/components/navbar/userSection";
 export const Navbar = () => {
   const pathname = usePathname();
 
-  console.log("router", pathname);
-
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent>

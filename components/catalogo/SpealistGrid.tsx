@@ -7,6 +7,7 @@ import {
   CardBody,
   CardFooter,
   Avatar,
+  Button,
 } from "@nextui-org/react";
 
 import SectionLocations from "@/components/catalogo/SectionLocations";
@@ -17,11 +18,7 @@ const SpecialistGrid = ({ specialists }: { specialists: Specialist[] }) => {
   return (
     <section className="grid grid-cols-1 gap-6">
       {specialists.map((specialist: Specialist) => (
-        <Card
-          key={specialist._uid}
-          className="w-full bg-neutral-300"
-          shadow="md"
-        >
+        <Card key={specialist._uid} className="w-full" shadow="md">
           <CardHeader className="justify-between">
             <div className="flex gap-5">
               <Avatar
@@ -43,26 +40,34 @@ const SpecialistGrid = ({ specialists }: { specialists: Specialist[] }) => {
           <CardBody className="px-3 py-0 text-small text-default-400">
             <section className="grid grid-cols-2 gap-2">
               <div>
-                <div className="px-1 py-2">
-                  <div className="text-small font-bold pb-1">Consultorios:</div>
+                <div className="px-1 py-2 my-2">
+                  <div className="text-default-600 text-small font-bold pb-1">
+                    Consultorios:
+                  </div>
 
-                  <SectionLocations locations={[]} />
+                  <SectionLocations locations={specialist.locations} />
                 </div>
                 <div className="px-1 py-2">
-                  <div className="text-small font-bold pb-1">Costos:</div>
+                  <div className="text-default-600 text-small font-bold pb-1">
+                    Costos:
+                  </div>
 
-                  <span>Desde: {specialist.price}</span>
+                  <span>Desde {specialist.price}</span>
+                </div>
+                <div className="px-1 py-2">
+                  <div className="text-default-600 text-small font-bold pb-1">
+                    Acerca de mi:
+                  </div>
+
+                  <span>{specialist.description}</span>
                 </div>
               </div>
               <Calendar />
             </section>
-
-            {/*  {specialist.locations.map((location) => location.name)} */}
           </CardBody>
           <CardFooter className="gap-3">
             <div className="flex gap-1">
-              <p className="font-semibold text-default-400 text-small">97.1K</p>
-              <p className="text-default-400 text-small">Followers</p>
+              <Button className="bg-secondary text-white">Agendar</Button>
             </div>
           </CardFooter>
         </Card>

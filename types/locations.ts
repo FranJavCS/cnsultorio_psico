@@ -1,7 +1,6 @@
-interface Locations {
+interface Location {
   _code: string;
-  type: string;
   location: string;
 }
 
-export type { Locations };
+export type { Location };
